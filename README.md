@@ -1,12 +1,81 @@
-# React + Vite
+# Книга контактів
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Застосунок для управління особистою колекцією контактів з можливістю реєстрації та авторизації користувачів.
 
-Currently, two official plugins are available:
+## Функціональність
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Реєстрація та авторизація користувачів
+- Додавання, видалення та пошук контактів
+- Приватні маршрути для авторизованих користувачів
+- Збереження токену авторизації в локальному сховищі
+- Toast повідомлення для користувача
+- Фільтрація контактів за ім'ям та номером телефону
 
-## Expanding the ESLint configuration
+## Технології
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- Redux Toolkit
+- React Router DOM
+- Redux Persist
+- Formik + Yup
+- React Hot Toast
+- CSS Modules
+- Vite
+
+## Структура проекту
+
+```
+src/
+├── components/          # React компоненти
+│   ├── AppBar/         # Шапка додатку
+│   ├── AuthNav/        # Навігація для неавторизованих
+│   ├── Contact/        # Компонент контакту
+│   ├── ContactForm/    # Форма додавання контакту
+│   ├── ContactList/    # Список контактів
+│   ├── Layout/         # Загальний макет
+│   ├── LoginForm/      # Форма входу
+│   ├── Navigation/     # Основна навігація
+│   ├── PrivateRoute/   # Приватний маршрут
+│   ├── RegistrationForm/ # Форма реєстрації
+│   ├── RestrictedRoute/ # Обмежений маршрут
+│   ├── SearchBox/      # Пошук контактів
+│   └── UserMenu/       # Меню користувача
+├── pages/              # Сторінки додатку
+│   ├── HomePage/       # Домашня сторінка
+│   ├── LoginPage/      # Сторінка входу
+│   ├── RegistrationPage/ # Сторінка реєстрації
+│   └── ContactsPage/   # Сторінка контактів
+└── redux/              # Redux логіка
+    ├── auth/           # Автентифікація
+    ├── contacts/       # Контакти
+    ├── filters/        # Фільтри
+    └── store.js        # Налаштування store
+```
+
+## API
+
+Використовується готовий бекенд: https://connections-api.goit.global/
+
+### Ендпоінти:
+- `POST /users/signup` - реєстрація
+- `POST /users/login` - вхід
+- `POST /users/logout` - вихід
+- `GET /users/current` - поточний користувач
+- `GET /contacts` - отримати контакти
+- `POST /contacts` - додати контакт
+- `DELETE /contacts/:id` - видалити контакт
+
+## Встановлення та запуск
+
+1. Клонуйте репозиторій
+2. Встановіть залежності: `npm install`
+3. Запустіть проект: `npm run dev`
+4. Для збірки: `npm run build`
+
+## Деплой
+
+Проект готовий для деплою на:
+- **Vercel**: використовує `vercel.json`
+- **Netlify**: використовує `public/_redirects`
+
+Обидва файли налаштовані для правильної роботи SPA маршрутизації.
